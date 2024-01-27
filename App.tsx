@@ -1,16 +1,16 @@
 import React from 'react';
-import {View} from 'react-native';
-import IntroSlider from "./src/component/IntroSlider/index"
+import {View, SafeAreaView, StyleSheet} from 'react-native';
+import AppNavigation from './src/navigation';
 const App = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-      
-      }}>
-     <IntroSlider/>
-    </View>
+<AppNavigation/>
   );
 };
 
 export default App;
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
