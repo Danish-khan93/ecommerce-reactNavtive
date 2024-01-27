@@ -1,16 +1,12 @@
 import React from 'react';
-import {View, SafeAreaView, StyleSheet} from 'react-native';
-import AppNavigation from './src/navigation';
+import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+
 const App = () => {
   return (
-<AppNavigation/>
+    <View>
+      <Text>hello</Text>
+    </View>
   );
 };
 
 export default App;
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
