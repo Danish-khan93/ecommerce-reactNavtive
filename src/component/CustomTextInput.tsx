@@ -1,24 +1,39 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, StyleSheet, Dimensions} from 'react-native';
-
+import {Controller} from 'react-hook-form';
 const width = Dimensions.get('window').width;
 const CustomTextInput = ({
   placeHolder,
   label,
   secureTextEntry,
+  control,
+  name,
 }: {
-  placeHolder: string;
-  label: string;
-  secureTextEntry: boolean;
+    placeHolder: string;
+    label: string;
+    secureTextEntry: boolean;
+    control: any;
+    name:string,
 }) => {
   return (
     <View style={style.container}>
       <Text style={style.label}>{label}</Text>
-      <TextInput
-        secureTextEntry={secureTextEntry}
-        placeholderTextColor="#000"
-        placeholder={placeHolder}
-        style={style.input}
+      <Controller
+      name={name}
+        control={control}
+        rules={{
+          required: true,
+        }}
+        render={({field: {onChange, value}}) => (
+          <TextInput
+            secureTextEntry={secureTextEntry}
+            placeholderTextColor="#000"
+            placeholder={placeHolder}
+            style={style.input}
+            onChangeText={onChange}
+            value={value}
+          />
+        )}
       />
     </View>
   );

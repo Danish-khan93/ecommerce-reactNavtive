@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
-import {Splesh,GetStarted , SignUp} from './src/screens/index.ts';
+import {Splesh,GetStarted , SignUp, Login} from './src/screens/index.ts';
 
 const App = () => {
   return (
@@ -8,6 +8,7 @@ const App = () => {
       {/* <Splesh /> */}
       {/* <GetStarted/> */}
       <SignUp/>
+      {/* <Login/> */}
     </View>
   );
 };

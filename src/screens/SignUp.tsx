@@ -2,7 +2,25 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CustomTextInput from '../component/CustomTextInput';
 import CustomAuthBtn from '../component/CustomAuthBtn';
+import {useForm} from 'react-hook-form';
+
+type SIGNUPFORM = {
+  userName: string;
+  email: string;
+  password: string;
+};
+
 const SignUp = () => {
+  const {control, handleSubmit} = useForm({
+    defaultValues: {
+      userName: '',
+      email: '',
+      password: '',
+    },
+  });
+  const onSubmit = (data: SIGNUPFORM) => {
+    console.log(data, 'signupdata');
+  };
   return (
     <View style={style.container}>
       <View>
@@ -10,27 +28,38 @@ const SignUp = () => {
       </View>
       <View style={style.btnSec}>
         <CustomTextInput
-          placeHolder="Enter User Name"
-          label="User Name"
-          secureTextEntry={false}
+        name='userName'
+        placeHolder="Enter User Name"
+        label="User Name"
+        secureTextEntry={false}
+        control={control}
         />
         <CustomTextInput
-          placeHolder="Enter Email"
-          label="Email Address"
-          secureTextEntry={false}
+        name='email'
+        control={control}
+        placeHolder="Enter Email"
+        label="Email Address"
+        secureTextEntry={false}
         />
         <CustomTextInput
+        name='password'
+          control={control}
           placeHolder="Enter Password"
           label="Password"
           secureTextEntry={true}
         />
-      </View>
       <View style={style.textContainer}>
         <Text style={style.pText}>Remember me</Text>
-        <Text style={style.LinkText}> Signin</Text>
+        <Text style={style.LinkText}> Button</Text>
       </View>
+      </View>
+     
       <View>
-        <CustomAuthBtn name={'Sign Up'} />
+        <CustomAuthBtn
+          name={'Sign Up'}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+        />
       </View>
     </View>
   );
@@ -45,9 +74,10 @@ const style = StyleSheet.create({
     backgroundColor: '#fff',
   },
   textContainer: {
-    display: 'flex',
+   marginTop: 20,
     flexDirection: 'row',
-  },
+gap:130,
+},
   headingText: {
     marginTop: 50,
     fontSize: 28,
