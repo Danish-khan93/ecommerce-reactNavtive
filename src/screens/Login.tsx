@@ -1,15 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Switch, StyleSheet} from 'react-native';
 import CustomTextInput from '../component/CustomTextInput';
 import CustomAuthBtn from '../component/CustomAuthBtn';
 import {useForm} from 'react-hook-form';
-
+import {useState} from 'react';
 type LOGINFORM = {
   userName: string;
   password: string;
 };
 
 const Login = () => {
+  const [isEnabled, setIsEnabled] = useState(false);
+
   const {control, handleSubmit} = useForm({
     defaultValues: {
       userName: '',
@@ -19,6 +21,7 @@ const Login = () => {
   const onSubmit = (data: LOGINFORM) => {
     console.log(data, 'signupdata');
   };
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
     <View style={style.container}>
       <View style={style.textContainer1}>
@@ -41,12 +44,17 @@ const Login = () => {
           label="Password"
           secureTextEntry={true}
         />
-      <View style={style.textContainer}>
-        <Text style={style.pText}>Remember me</Text>
-        <Text style={style.LinkText}> Button</Text>
+        <View style={style.textContainer}>
+          <Text style={style.pText}>Remember me</Text>
+          <Switch
+            trackColor={{false: '#767577', true: '#81b0ff'}}
+            thumbColor={isEnabled ? '#FF981F' : '#f4f3f4'}
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+          />
+        </View>
       </View>
-      </View>
-      
+
       <View>
         <CustomAuthBtn
           name={'Login'}
@@ -67,7 +75,7 @@ const style = StyleSheet.create({
     backgroundColor: '#fff',
   },
   textContainer: {
-    marginTop:20,
+    marginTop: 20,
     gap: 130,
     flexDirection: 'row',
   },
@@ -85,12 +93,7 @@ const style = StyleSheet.create({
     fontWeight: '400',
     color: '#8f959e',
   },
-  LinkText: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#1D1e20',
-    marginBottom: 15,
-  },
+
   btnSec: {
     gap: 10,
     flex: 1,

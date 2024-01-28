@@ -7,8 +7,8 @@ const App = () => {
     <View style={{flex:1}}>
       {/* <Splesh /> */}
       {/* <GetStarted/> */}
-      <SignUp/>
-      {/* <Login/> */}
+      {/* <SignUp/> */}
+      <Login/>
     </View>
   );
 };
