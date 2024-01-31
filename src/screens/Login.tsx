@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Switch, StyleSheet} from 'react-native';
+import {View, Text, Switch, StyleSheet, TouchableOpacity} from 'react-native';
 import CustomTextInput from '../component/CustomTextInput';
 import CustomAuthBtn from '../component/CustomAuthBtn';
 import {useForm} from 'react-hook-form';
@@ -19,7 +19,7 @@ const Login = () => {
     },
   });
   const onSubmit = (data: LOGINFORM) => {
-    console.log(data, 'signupdata');
+    console.log(data, 'Logindata');
   };
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   return (
@@ -44,6 +44,12 @@ const Login = () => {
           label="Password"
           secureTextEntry={true}
         />
+        <View style={style.forgotPassContainer}>
+          <TouchableOpacity>
+            <Text style={style.forgotPass}>Forgot password?</Text>
+          </TouchableOpacity>
+        </View>
+
         <View style={style.textContainer}>
           <Text style={style.pText}>Remember me</Text>
           <Switch
@@ -56,6 +62,11 @@ const Login = () => {
       </View>
 
       <View>
+        <View>
+          <Text style={style.bottomText}>
+          By connecting your account confirm that you agree with our Term and Condition 
+          </Text>
+        </View>
         <CustomAuthBtn
           name={'Login'}
           handleSubmit={handleSubmit}
@@ -98,5 +109,23 @@ const style = StyleSheet.create({
     gap: 10,
     flex: 1,
     justifyContent: 'center',
+  },
+  forgotPassContainer: {
+    alignItems: 'flex-end',
+    marginTop: 30,
+  },
+  forgotPass: {
+    color: '#EA4335',
+    fontSize: 15,
+    fontWeight: '400',
+  },
+  bottomText: {
+    color: '#8f959e',
+    paddingLeft: 30,
+    paddingRight: 30,
+    fontSize: 13,
+    fontWeight: '400',
+    textAlign: 'center',
+    marginBottom: 20,
   },
 });
